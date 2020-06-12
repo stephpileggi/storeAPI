@@ -1,0 +1,13 @@
+{
+  "name": "storeApi",
+  "version": "1.0.0",
+  "description": "A Node.js Restful API - simaple shop Api",
+  "main": "index.js",
+  "repository": "https://github.com/stephpileggi/storeAPI.git",
+  "author": "Stephanie Pileggi",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
