@@ -2,9 +2,16 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+
+//connect to the mongodb path and change the password to whatever it was in mongodb
+mongoose.connect('mongodb+srv://node_shop:' + process.env.MONGO_ATLAS_PW + '@cluster0-zlfte.mongodb.net/<dbname>?retryWrites=true&w=majority', {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    });
 
 
 app.use(morgan('dev'));
