@@ -74,20 +74,11 @@ router.post('/', (req, res, next) => {
 router.get('/:productId', (req, res, next) => {
     const id = req.params.productId;
     Product.findById(id)
-    .select('name price _id')
     .exec()
     .then(doc => {
         console.log("From database", doc);
         if(doc) {
-            res.status(200).json({
-                product: doc,
-                request: {
-                    type: 'GET',
-                    description: "Get all products",
-                    url: 'http://localhost:7000/products'
-
-                }
-            });
+            res.status(200).json(doc);
         } else {
             res.status(404).json({
                 message: 'No valid entry found for provided ID'
@@ -110,13 +101,7 @@ router.patch('/:productId', (req, res, next) => {
     .exec()
     .then(result => {
         console.log(result);
-        res.status(200).json({
-            message: 'Product Updated',
-            request: {
-                type: 'GET',
-                url: req.protocol + '://' + req.get('host') +req.originalUrl
-            }
-        });
+        res.status(200).json(result);
     })
     .catch(err => {
         console.log(err);
@@ -131,14 +116,7 @@ router.delete('/:productId', (req, res, next) => {
     Product.remove({_id: id})
     .exec()
     .then(result => {
-        res.status(200).json({
-            message: "Product deleted",
-            request: {
-                type: 'POST',
-                url: req.protocol + '://' + req.get('host') + '/products',
-                body: { name: 'String', price: 'Number'}
-            }
-        });
+        res.status(200).json(result);
     })
     .catch(err => {
         console.log(err);
