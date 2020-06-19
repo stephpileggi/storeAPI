@@ -15,6 +15,8 @@ mongoose.connect('mongodb+srv://node_shop:' + process.env.MONGO_ATLAS_PW + '@clu
 
 
 app.use(morgan('dev'));
+//this makes the uploads folder publicly available
+app.use('/uploads', express.static('uploads'));
 //takes json and url encoded data and makes it easier to read
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
